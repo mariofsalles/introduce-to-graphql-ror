@@ -12,7 +12,7 @@ module Types
 
     field :user, UserType, null: false,
     description: 'Search for one User by ID' do
-      argument :id, Integer, required: true
+      argument :id, Integer, required: false
     end
 
     def user(id:)
