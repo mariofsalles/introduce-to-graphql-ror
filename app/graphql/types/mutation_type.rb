@@ -1,17 +1,16 @@
 module Types
   class MutationType < Types::BaseObject
 
-    # field :create_user, UserType, null: false, 
-    # description: 'Mutation for add an User' do
-    #   argument :email, String, required: true
-    #   argument :password, String, required: true
-    # end
-    # def create_user(email:, password:)
-    #   User.create(email: email, password: password)
-    # end
+    field :create_user, UserType, null: true, 
+    description: 'Mutation for add an User' do
+      argument :user, Types::UserInputType, required: true
+    end
+    def create_user(user:)
+      User.create user.to_h
+    end
 
     # ANOTHER WAY #
-    field :create_user, UserType, mutation: Mutations::CreateUser
+    # field :create_user, UserType, mutation: Mutations::CreateUser
     
   end
 end
