@@ -1,6 +1,5 @@
 module Types
   class QueryType < BaseObject
-
     field :test_field, String, null: false,
     description: "An example field added by the generator" do
       argument :name, String, required: true
@@ -11,12 +10,14 @@ module Types
       "Hello #{name}!"
     end
 
-    field :user, Types::UserType, null: false, camelize: false,
-    description: 'One user' do
+    field :user, UserType, null: false,
+    description: 'Search for one User by ID' do
       argument :id, Integer, required: true
     end
+
     def user(id:)
       User.where(id: id).first
     end
+
   end
 end
